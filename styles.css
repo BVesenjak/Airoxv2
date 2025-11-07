@@ -9,7 +9,7 @@
     --dark-gray: #1a1a1a;
     --medium-gray: #2a2a2a;
     --light-gray: #3a3a3a;
-    --red: rgb(0, 200, 200);
+    --red: rgb(0, 255, 255);
     --red-hover: #0075a7;
     --white: #ffffff;
     --text-gray: #b3b3b3;
@@ -133,8 +133,7 @@ body.cursor-click .btn-cta *:hover {
 }
 
 .logo-flame {
-    font-size: 28px;
-    filter: drop-shadow(0 0 10px cyan);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
 .logo-text {
@@ -182,6 +181,7 @@ body.cursor-click .btn-cta *:hover {
     top: -8px;
     right: -8px;
     background-color: var(--red);
+    /* background-color: rgb(228, 0, 15); */
     color: var(--white);
     font-size: 10px;
     font-weight: bold;
@@ -491,7 +491,7 @@ p {
 .product-render {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 10px 40px rgba(229, 9, 20, 0.3));
+    filter: drop-shadow(0 10px 40px rgba(255, 64, 0, 0.3));
     opacity: 0;
     animation: fadeInProduct 1.5s ease-in 3s forwards, float 3s ease-in-out 4.5s infinite;
 }
@@ -575,6 +575,7 @@ p {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    margin-bottom: 1.5rem;
 }
 
 .feature-list {
@@ -2043,12 +2044,63 @@ p {
 }
 
 .quantity-stepper {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    border: 2px solid var(--border-gray);
+    padding: 3px;
     border-radius: 12px;
     overflow: hidden;
-    background-color: var(--dark-gray);
+    background: var(--dark-gray);
+    isolation: isolate;
+}
+
+.quantity-stepper::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 120deg,
+        rgba(192, 192, 192, 0.3) 150deg,
+        rgba(255, 255, 255, 1) 180deg,
+        rgba(192, 192, 192, 0.3) 210deg,
+        transparent 240deg,
+        transparent 360deg
+    );
+    animation: steelFlash 1.575s ease-in-out infinite;
+    z-index: -1;
+}
+
+.quantity-stepper::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: var(--dark-gray);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+@keyframes steelFlash {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    2% {
+        opacity: 1;
+    }
+    5% {
+        transform: rotate(270deg);
+        opacity: 1;
+    }
+    8% {
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(270deg);
+        opacity: 0;
+    }
 }
 
 .quantity-stepper__btn {
@@ -3113,7 +3165,7 @@ p {
   
   .cta-btn-wrapper button.buy-cta {
     position: relative !important;
-    border: 14px solid rgb(0, 200, 200) !important;
+    border: 12px solid rgb(23, 69, 69) !important;
     background: transparent !important;
     overflow: hidden !important;
     transition: border-color 0.05s, background-color 0.05s !important;
@@ -3125,7 +3177,7 @@ p {
       50% 100%,
       0% 80%
     ) !important;
-    padding: 0.7rem 8rem !important;
+    padding: 0.2rem 13rem !important;
     cursor: pointer !important;
     font-family: 'Out Of My League', sans-serif !important;
   }
@@ -3169,7 +3221,8 @@ p {
   }
   
   .cta-btn-wrapper button.buy-cta:hover {
-    border-color: white !important;
+    border: 10px;
+    border-color: rgb(0, 213, 255) !important;
     box-shadow: 0 0 20px rgba(192, 247, 255, 0.4) !important;
   }
   
@@ -3206,3 +3259,4 @@ p {
 
 
 /*special button ///////////////////////////////////////////////////////////*/
+
